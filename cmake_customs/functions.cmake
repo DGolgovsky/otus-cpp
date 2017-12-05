@@ -56,7 +56,7 @@ function(custom_add_boost_test TARGET)
     set(Boost_USE_STATIC_RUNTIME OFF)
     #find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
 	find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-    
+
 	if(Boost_FOUND)
 		include_directories(${Boost_INCLUDE_DIRS})
 		custom_add_executable_from_dir(${TARGET})
