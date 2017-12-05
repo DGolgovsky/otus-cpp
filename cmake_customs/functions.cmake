@@ -20,6 +20,10 @@ endfunction(custom_enable_warnings)
 
 function(custom_enable_cxx14 TARGET)
     target_compile_features(${TARGET} PUBLIC cxx_std_14)
+    set_target_properties(${TARGET} PROPERTIES
+        CXX_STANDARD 14
+        CXX_STANDARD_REQUIRED ON
+    )
     target_compile_features(${TARGET} PRIVATE cxx_lambda_init_captures)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS "/std:c++latest")
