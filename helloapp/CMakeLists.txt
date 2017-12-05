@@ -1,0 +1,5 @@
+custom_enable_coverage()
+custom_enable_warnings()
+custom_add_executable_from_dir(helloapp)
+custom_enable_cxx14(helloapp)
+target_link_libraries(helloapp libhello)
