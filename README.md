@@ -1,2 +1,3 @@
-# otus-cpp
-OTUS C++ online course studying repository
+# OTUS-Cpp
+OTUS C++ online [course](https://otus.ru/lessons/razrabotchik-c++/) studying repository.
+
