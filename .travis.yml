@@ -7,21 +7,24 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
+            - g++-5
             - libboost-test-dev
+
 before_script:
-    - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
-    - apt-get update -qq
-    - apt-get install libspdlog-dev -y
+    #    - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+      #    - apt-get update -qq
+      #    - apt-get install libspdlog-dev -y
 
 script:
-    - cmake .
+    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake -D ENABLE_COVERAGE:BOOL=TRUE .
     - cmake --build . -- -j2
-    - cmake --build . --target test
-    - cmake --build . --target package
+    - ctest -j2
+      #    - cmake --build . --target test
+      #    - cmake --build . --target package
 
 deploy:
     provider: script
     skip_cleanup: true
     script:
-        - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -dgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+        - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER.deb -dgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
