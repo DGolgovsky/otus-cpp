@@ -2,7 +2,6 @@
 CMakeFiles
 bin
 CMakeCache.txt
-*.cmake
 Makefile
 
 # Prerequisites
