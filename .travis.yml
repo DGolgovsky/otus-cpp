@@ -2,10 +2,6 @@ dist: trusty
 sudo: false
 language: cpp
 
-before_script:
-    - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | tee -a /etc/apt/sources.list
-    - apt-get update -qq
-
 addons:
     apt:
         sources:
@@ -13,7 +9,11 @@ addons:
         packages:
             - g++-5
             - libboost-test-dev
-            - libspdlog-dev
+
+before_script:
+    - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | tee -a /etc/apt/sources.list
+    - apt-get update -qq
+    - apt-get install libspdlog-dev -y
 
 script:
     - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake -DBUILD_TESTING=ON .
