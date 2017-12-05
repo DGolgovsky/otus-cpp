@@ -2,7 +2,7 @@
 #include "libhello/hello.h"
 
 
-int main(int argc, char **argv)
+int main(void)
 {
     hello::PrintHello(std::cout);
 
