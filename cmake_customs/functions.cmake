@@ -24,7 +24,7 @@ function(custom_enable_cxx14 TARGET)
 		CXX_STANDARD 14
 		CXX_STANDARD_REQUIRED ON
 	)
-    #target_compile_features(${TARGET} PRIVATE cxx_lambda_init_captures)
+	target_compile_features(${TARGET} PUBLIC cxx_lambda_init_captures)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS "/std:c++latest")
     elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -54,9 +54,8 @@ function(custom_add_boost_test TARGET)
     set(Boost_USE_STATIC_LIBS OFF)
     set(Boost_USE_MULTITHREADED ON)
     set(Boost_USE_STATIC_RUNTIME OFF)
-    #find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
-	find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-    
+    find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
+
 	if(Boost_FOUND)
 		include_directories(${Boost_INCLUDE_DIRS})
 		custom_add_executable_from_dir(${TARGET})
