@@ -13,7 +13,7 @@ addons:
         packages:
             - g++-5
             - libboost-test-dev
-			- libspdlog-dev
+            - libspdlog-dev
 
 script:
     - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake -DBUILD_TESTING=ON .
