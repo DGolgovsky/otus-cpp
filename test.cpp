@@ -3,7 +3,7 @@
 #define BOOST_TEST_MODULE TestMain
 #include <boost/test/unit_test.hpp>
 
-#include "bin/version.h"
+#include "version.h"
 
 BOOST_AUTO_TEST_SUITE( test_suite )
 
