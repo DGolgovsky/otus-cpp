@@ -1,3 +1,3 @@
 configure_file("${CMAKE_SOURCE_DIR}/libs/version/in.version.h" "${CMAKE_SOURCE_DIR}/libs/version/version.h")
-custom_enable_cxx14(version_boost_test)
+#custom_enable_cxx14(version_boost_test)
 custom_add_boost_test(version_boost_test)

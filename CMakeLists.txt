@@ -10,8 +10,8 @@ add_subdirectory(libs/libhello)
 add_subdirectory(helloapp)
 
 if(BUILD_TESTING)
-    add_subdirectory(tests/libhellotest)
-    #add_subdirectory(tests/version_boost_test)
+    #add_subdirectory(tests/libhellotest)
+    add_subdirectory(tests/version_boost_test)
 endif()
 
 include(cmake_customs/cpack.cmake)
