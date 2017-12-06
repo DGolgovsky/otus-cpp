@@ -3,9 +3,9 @@ sudo: false
 language: cpp
 
 addons:
-    apt:
-        packages:
-            - libboost-test-dev
+	apt:
+		packages:
+			- libboost-test-dev
 
 before_script:
     - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
