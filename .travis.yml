@@ -3,9 +3,9 @@ sudo: false
 language: cpp
 
 addons:
-    apt:
-        packages:
-            - libboost-test-dev
+	apt:
+		packages:
+			- libboost-test-dev
 
 before_script:
     - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
@@ -17,7 +17,7 @@ script:
     - cmake --build . -- -j2
     - cmake --build . --target test
     - cmake --build . --target package
-	- ctest -j2
+    - ctest -j2
 
 deploy:
     provider: script
