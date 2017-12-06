@@ -3,6 +3,7 @@ CMakeFiles
 bin
 CMakeCache.txt
 Makefile
+version.h
 
 # Prerequisites
 *.d

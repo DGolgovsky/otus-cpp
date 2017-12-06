@@ -1,6 +1,0 @@
-custom_enable_coverage(helloworld_cli)
-custom_enable_warnings(helloworld_cli)
-custom_add_executable_from_dir(helloworld_cli)
-custom_enable_cxx14(helloworld_cli)
-target_link_libraries(helloworld_cli libhello)
-install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
