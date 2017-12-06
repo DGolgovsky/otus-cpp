@@ -9,6 +9,7 @@ addons:
         packages:
             #- g++-5
             - libboost-test-dev
+            - cmake3
 
 before_script:
     - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
