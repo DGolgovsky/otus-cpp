@@ -31,11 +31,13 @@ set_target_properties(test_version_cli PROPERTIES
 
 target_link_libraries(helloworld_cli
 	pthread
+	--coverage
 )
 
 target_link_libraries(test_version_cli
 	pthread
 	${Boost_LIBRARIES}
+	--coverage
 )
 
 install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
