@@ -24,3 +24,15 @@ deploy:
     skip_cleanup: true
     script: curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
+after_success:
+    - mkdir -p $TRAVIS_BUILD_DIR/coverals
+    - wget https://github.com/linux-test-project/lcov/archive/v1.12.zip
+    - unzip v1.12.zip
+    - LCOV="`pwd`/lcov-1.12/bin/lcov $GCOV"
+
+    # Sending data to Coveralls
+    - cd $TRAVIS_BUILD_DIR
+    - gem install coveralls-lcov
+    - coveralls-lcov --repo-token $COVERALLS_API_KEY coverals/coverage.info
+    # Sending data to codecov.io
+    - bash <(curl -s https://codecov.io/bash)
