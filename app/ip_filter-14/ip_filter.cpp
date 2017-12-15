@@ -25,27 +25,28 @@ void print_out(std::vector<std::vector<T>> const &v) noexcept {
 namespace filter {
     using vvs = std::vector<std::vector<std::string>>;
 
-    std::string parser(int a) {
-        return std::to_string(a);
+    template <typename T>
+    void variadic_vector_emplace(vector<T>&) {}
+
+    template <typename T, typename First, typename... Args>
+    void variadic_vector_emplace(vector<T>& v, First&& first, Args&&... args)
+    {
+        v.emplace_back(std::forward<First>(first));
+        variadic_vector_emplace(v, std::forward<Args>(args)...);
     }
 
-    template<typename ...Args>
-    std::string parser(Args... args) {
-        return parser(args...);
-    }
-
-    // TODO debug for many arguments
     template<typename ... Args>
     vvs filter(vvs const &ip_pool, Args... args) {
         vvs ret_vector;
-        std::vector<std::string> check_vector;
-        check_vector.push_back(parser(args...));
+        std::vector<int> check_vector;
+        //check_vector.push_back(parser(args...));
+        variadic_vector_emplace(check_vector, std::forward<Args>(args)...);
 
         for (const auto &it : ip_pool) {
             bool checker = true;
             auto ip_part = it.begin();
             for(auto chk : check_vector) {
-                if (chk != *ip_part) {
+                if (std::to_string(chk) != *ip_part) {
                     checker = false;
                     break;
                 }
@@ -132,22 +133,22 @@ int main(int argc, char const **argv)
     );
 
     print_out(ip_pool);
-    std::cout << "<<-- ALL -->>" << std::endl;
+    //std::cout << "<<-- ALL -->>" << std::endl;
 
-    // TODO filter by first byte and output
+    // [DONE] Filter by first byte and output
     // ip = filter(1)
     print_out(filter::filter(ip_pool, 1));
-    std::cout << "<<-- FILTER(1) -->>" << std::endl;
+    //std::cout << "<<-- FILTER(1) -->>" << std::endl;
 
-    // TODO filter by first and second bytes and output
+    // [DONE] Filter by first and second bytes and output
     // ip = filter(46, 70)
     print_out(filter::filter(ip_pool, 46, 70));
-    std::cout << "<<-- FILTER(46, 70) -->>" << std::endl;
+    //std::cout << "<<-- FILTER(46, 70) -->>" << std::endl;
 
     // [DONE] Filter by any byte and output
     // ip = filter_any(46)
     print_out(filter::filter_any(ip_pool, 46));
-    std::cout << "<<-- FILTER_ANY(46) -->>" << std::endl;
+    //std::cout << "<<-- FILTER_ANY(46) -->>" << std::endl;
 
     return 0;
 }
