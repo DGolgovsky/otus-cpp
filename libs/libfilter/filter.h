@@ -1,6 +1,15 @@
-#ifndef _CLASS_H_
-#define _CLASS_H_
+#ifndef _FILTER_H_
+#define _FILTER_H_
 
-/* Put your code here ... */
+#include <string>
+#include <sstream>
+#include <vector>
+
+namespace filter {
+
+std::vector<std::string> split(const std::string &, char);
+
+std::string filter();
+}
 
 #endif

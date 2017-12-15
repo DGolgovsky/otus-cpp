@@ -1,8 +1,8 @@
-install(TARGETS ip_filter-14 RUNTIME DESTINATION bin)
+install(TARGETS ${CMAKE_CURRENT_BINARY_DIR}/app/ip_filter-14/ip_filter-14 RUNTIME DESTINATION bin)
 
 if (BINARY_PACKAGING_MODE)
 	execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink
-                    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter-14
+                    ip_filter-14
                     ${CMAKE_CURRENT_BINARY_DIR}/ip_filter)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ip_filter
             RUNTIME DESTINATION bin)
