@@ -1,0 +1,1 @@
+custom_add_tests(libfiltertest libfilter)
