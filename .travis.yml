@@ -6,7 +6,7 @@ language: cpp
 branches:
   only:
     - master
-    - stable
+    - wip
 
 addons:
   apt:
