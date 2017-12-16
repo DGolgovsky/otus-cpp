@@ -13,16 +13,15 @@ branches:
 addons:
     apt:
         sources:
-            #- ubuntu-toolchain-r-test
+            - ubuntu-toolchain-r-test
         packages:
-            #- g++-5
+            - g++-5
 
 before_script:
     # Nothing to do
 
 script:
-    #- CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
-    - ./compile.sh
+    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
 
 deploy:
     provider: script
