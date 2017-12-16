@@ -13,20 +13,21 @@ branches:
 addons:
     apt:
         sources:
-            - ubuntu-toolchain-r-test
+            #- ubuntu-toolchain-r-test
         packages:
-            - g++-5
+            #- g++-5
 
 before_script:
     # Nothing to do
 
 script:
-    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+    #- CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+    - ./compile.sh
 
 deploy:
     provider: script
     skip_cleanup: true
-    script: curl -T ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_filter/$TRAVIS_BUILD_NUMBER/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    script: curl -T build/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_filter/$TRAVIS_BUILD_NUMBER/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io

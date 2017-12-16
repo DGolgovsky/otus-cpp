@@ -12,4 +12,4 @@ if(BUILD_TESTING)
     add_subdirectory(tests/libfilter)
 endif()
 
-#include(custom_cmake/cpack.cmake)
+include(custom_cmake/cpack.cmake)
