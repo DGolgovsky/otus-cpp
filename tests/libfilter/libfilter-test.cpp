@@ -3,20 +3,31 @@
 
 #include "libfilter/filter.h"
 
-TEST_CASE("Input 0", "[split]") {
-	// cat ip.tsv | ./a.out
-    //auto out0 = filter::split("192.168.0.1\t10\t20", '\t');
-    //REQUIRE(out0 == "192.168.0.1");
-
+TEST_CASE("Input 0", "[fill]") {
+    std::stringstream ss;
+    ss << "113.162.145.156\t111\t0\n";
+    ss << "157.39.22.224\t5\t6\n";
+    ss << "79.180.73.190\t2\t1\n";
+    std::vector<std::vector<std::string>> out = ip_filter::fill(ss);
+    
+    std::vector<std::vector<std::string>> test = {
+              {"113", "162", "145", "156"},
+              {"157", "39", "22", "224"},
+              {"79", "180", "73", "190"}
+    };
+    
+    REQUIRE(out == test);
 }
 
 TEST_CASE("Input 1", "[filter]") {
-    auto out0 = filter::filter();
-    REQUIRE(out0 == "");
+    // cat ip.tsv | ./a.out
+    std::stringstream ss;
+    ss << "1.231.69.33\n1.87.203.225\n1.70.44.170\n1.29.168.152\n1.1.234.8\n";
+    std::vector<std::vector<std::string>> test = ip_filter::fill(ss);
 
-    auto out1 = filter::filter();
-    REQUIRE(out1 == "");
+    std::vector<std::vector<std::string>> out = ip_filter::filter(vvs, 1);
 
-    auto out2 = filter::filter();
-    REQUIRE(out2 == "");
+    REQUIRE(out == test);
+
 }
+

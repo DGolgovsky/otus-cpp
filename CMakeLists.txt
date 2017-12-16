@@ -5,7 +5,7 @@ project(ip_filter VERSION 0.0.$ENV{BUILD_NUMBER})
 include(custom_cmake/functions.cmake)
 
 add_subdirectory(libs/libfilter)
-add_subdirectory(app/ip_filter-14)
+add_subdirectory(app/ip_filter)
 
 if(BUILD_TESTING)
     enable_testing()
