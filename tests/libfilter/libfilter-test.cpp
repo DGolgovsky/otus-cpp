@@ -25,7 +25,7 @@ TEST_CASE("Input 1", "[filter]") {
     ss << "1.231.69.33\n1.87.203.225\n1.70.44.170\n1.29.168.152\n1.1.234.8\n";
     std::vector<std::vector<std::string>> test = ip_filter::fill(ss);
 
-    std::vector<std::vector<std::string>> out = ip_filter::filter(vvs, 1);
+    std::vector<std::vector<std::string>> out = ip_filter::filter(test, 1);
 
     REQUIRE(out == test);
 
