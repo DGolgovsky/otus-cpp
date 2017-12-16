@@ -2,37 +2,30 @@ dist: trusty
 sudo: false
 language: cpp
 
+# whitelist
+branches:
+  only:
+    - master
+    - wip
+
 addons:
-    apt:
-        packages:
-            - libboost-test-dev
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-5
 
 before_script:
-    - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
-    - sudo apt-get update -qq
-    - sudo apt-get install libspdlog-dev -y
+    # Nothing to do
 
 script:
-    - cmake .
-    - cmake --build . -- -j2
-    - cmake --build . --target test
-    - cmake --build . --target package
-    - ctest -j2
+    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
 
 deploy:
     provider: script
     skip_cleanup: true
-    script: curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    script: curl -T ip_filter-0.0.$BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_filter/$BUILD_NUMBER/ip_filter-0.0.$BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
-    - mkdir -p $TRAVIS_BUILD_DIR/coverals
-    - wget https://github.com/linux-test-project/lcov/archive/v1.12.zip
-    - unzip v1.12.zip
-    - LCOV="`pwd`/lcov-1.12/bin/lcov $GCOV"
-
-    # Sending data to Coveralls
-    - cd $TRAVIS_BUILD_DIR
-    - gem install coveralls-lcov
-    - coveralls-lcov --repo-token $COVERALLS_API_KEY coverals/coverage.info
     # Sending data to codecov.io
-    - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
