@@ -1,12 +1,12 @@
-#ifndef _FILTER_H_
-#define _FILTER_H_
+#ifndef _ALLOCATOR_H_
+#define _ALLOCATOR_H_
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <algorithm>
 
-namespace ip_filter
+namespace cualloc
 {
     using ushort = unsigned short;
     using pool_t = std::vector<std::vector<ushort>>;

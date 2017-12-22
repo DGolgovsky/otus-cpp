@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+#project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(allocator)
 
 include(custom_cmake/functions.cmake)
 
