@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 include(custom_cmake/functions.cmake)
 
-add_subdirectory(libs/libfilter)
-add_subdirectory(app/ip_filter)
+add_subdirectory(libs/liballocator)
+add_subdirectory(app/allocator)
 
 if(BUILD_TESTING)
     enable_testing()
-    add_subdirectory(tests/libfilter)
+    add_subdirectory(tests/liballocator)
 endif()
 
 include(custom_cmake/cpack.cmake)
