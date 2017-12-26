@@ -1,120 +1,153 @@
 #include "liballocator/allocator.h"
 #include <map>
-#include <memory>
-#include <list>
+//#include "c_container.h"
 #include "c_list.h"
+
+/* NDEBUG */
+/* */
+#include <cxxabi.h>
+template <class T>
+const char* get_class_name()
+{
+    static int st = 0;
+    size_t dlen = 0;
+    static auto mangled = typeid(T).name();
+    static char * demangled = abi::__cxa_demangle(mangled, demangled, &dlen, &st);
+    return 0 == st ? demangled : mangled;
+}
+void* operator new (size_t size)
+{
+    void *p = std::malloc(size);
+    std::cout << "operator new: size = " << size << " p = " << p << std::endl;
+    return p;
+}
+
+void operator delete (void* p, std::size_t)
+{
+    std::cout << "operator delete: p = " << p << std::endl;
+    std::free(p);
+}
+void operator delete (void* p)
+{
+    std::cout << "operator delete: p = " << p << std::endl;
+    std::free(p);
+}
+/* */
+/* NDEBUG */
+
 
 template<class T>
 class custom_allocator
 {
 private:
-    T *ptr;
+    T *ptr = nullptr;
+    T *ptr_head = nullptr;
 
 public:
     using value_type = T;
 
-    custom_allocator() throw() {
-        printf("Alloc Constructor: %p %32s\n", this, typeid(T).name());
-        allocate(12);
+    custom_allocator() noexcept {
+        std::cout << "Default constructor:" << "\n\tT: " << get_class_name<T>() << std::endl;
+        allocate(10);
     }
 
-    custom_allocator(const custom_allocator&) throw() {
-        printf("Copy Constructor: %p %32s\n", this, typeid(T).name());
+    explicit custom_allocator(int n) noexcept {
+        std::cout << "Single param constructor:" << "\n\tT: " << get_class_name<T>() << std::endl;
+    }
+
+    custom_allocator(const custom_allocator&) noexcept {
+        std::cout << "Copy Constructor:" << "\n\tT: " << get_class_name<T>() << std::endl;
     }
 
     template<typename X>
-    explicit custom_allocator(const custom_allocator<X>&) throw() {
-        printf("Construct T from X: %p %32s %32s\n", this, typeid(T).name(), typeid(X).name());
+    explicit custom_allocator(const custom_allocator<X> &other) noexcept {
+        std::cout << "Construct T from X:" << "\n\tT: " << get_class_name<T>() << "\n\tX: " << get_class_name<X>() << std::endl;
     }
 
     T* allocate(std::size_t n) {
-        //std::cout << "Allocate " << n << " ";
-        printf("Allocate: SZ:%zu OBJ:%p T:%32s ADDR:", n, this, typeid(T).name());
-        ptr = reinterpret_cast<T *>(::operator new(n * sizeof(T)));
-        std::cout << ptr << std::endl;
-
-        if (ptr)
+        if (!ptr_head) {
+            ptr = reinterpret_cast<T*>(::operator new(n * sizeof(T)));
+            ptr_head = ptr;
+            std::cout << "\tAllocated:\n\t\t" << get_class_name<T>() << "\n\t\taddr: " << ptr << ", size: " << n << std::endl;
             return ptr;
-        else
-            throw std::bad_alloc();
+        } else {
+            return ptr++;
+        }
     }
 
-    auto reserve(size_t i) {
-        std::cout << "Reserve " << i << std::endl;
-        allocate(i);
+    void reserve(unsigned int size) {
+        if (size)
+            allocate(size);
     }
 
-    void deallocate(T *p, std::size_t n) {
-        std::cout << "Deallocate " << n << " " << p << std::endl;
-        ::operator delete(p);
+    template<class U>
+    struct rebind {
+        typedef custom_allocator<U> other;
+    };
+
+    void deallocate(T *p, std::size_t) {
+        if (p == ptr_head) {// if there's a pool, nothing to do
+            //std::cout << "\tDeallocating:\n\tT: " << get_class_name<T>() << ", addr: " << p << std::endl;
+            ::operator delete(ptr_head);
+            ptr_head = nullptr;
+        }
     }
 
     template <typename U, typename ... Args>
     void construct(U* p, Args&& ... args) {
-        std::cout << "Construct " << p << std::endl;
+        //std::cout << "\tConstruct: " << p << std::endl;
         new (p) U(std::forward<Args>(args)...);
     }
 
     void destroy(T* p) {
+        //std::cout << "\tDestroy: " << std::endl;
         p->~T();
-        std::cout << "Destroy" << std::endl;
-    }
-
-    T *address(T& x) const {
-        return const_cast<T*>(address(const_cast<T const &>(x)));
-    }
-
-    T const *address(T const &x) const {
-        return std::allocator<T>().address(x);
     }
 };
-
-class list;
-
-class list;
 
 template <typename T>
 void fill_container(T &cont)
 {
     auto next = 1;
     cont.emplace(0, next);
-    //cont.insert(std::make_pair(0, next));
     for (uint32_t i = 1; i != 10; ++i) {
         next *= i;
         cont.emplace(i, next);
-        //cont.insert(std::make_pair(i, next));
     }
 }
 
 int main()
 {
-    std::cout << "std::map<std::allocator>\n";
-    auto std_map = std::map<uint32_t, uint32_t>{};
-    fill_container(std_map);
+    {
+        //std::cout << "std::map<std::allocator>\n";
+        auto std_map = std::map<uint32_t, uint32_t>{};
+        fill_container(std_map);
+    }
+    {
+        //std::cout << "\nstd::map<custom::allocator>\n";
+        auto custom_map = std::map<uint32_t, uint32_t, std::less<>, custom_allocator<std::pair<const uint32_t, uint32_t>>>{};
+        //custom_map.get_allocator().reserve(10);
+        fill_container(custom_map);
 
-    std::cout << "std::map<custom::allocator>\n";
-    auto custom_map = std::map<uint32_t, uint32_t, std::less<>, custom_allocator<std::pair<const uint32_t, uint32_t>>>{};
-    //custom_map.get_allocator().reserve(10);
-    fill_container(custom_map);
+        for (auto const &it : custom_map) {
+            std::cout << it.first << " " << it.second << std::endl;
+        }
+    }
+    {
+        std::cout << "\ncustom::list<std::allocator>\n";
+        auto custom_list = c_list<uint32_t>{};
+        fill_container(custom_list);
+    }
+    {
+        std::cout << "\ncustom::list<custom::allocator>\n";
+        auto custom_list = c_list<uint32_t, custom_allocator<Node<uint32_t>>>{};
+        fill_container(custom_list);
 
-    for (auto const &it : custom_map) {
-        std::cout << it.first << " " << it.second << std::endl;
+        for(auto it : custom_list) {
+            std::cout << it << std::endl;
+        }
     }
 
-    std::cout << "custom::list<custom::allocator>\n";
-    auto c_list = List<uint32_t, custom_allocator<uint32_t>>{};
-    auto next = 1;
-    c_list.append(next);
-    for (uint32_t i = 1; i != 10; ++i) {
-        next *= i;
-        c_list.append(next);
-    }
-    for (auto const &it : c_list) {
-        std::cout << it << std::endl;
-    }
-
-    //std::list l;
     return 0;
 }
-
 

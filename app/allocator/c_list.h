@@ -1,20 +1,23 @@
 #ifndef C_LIST_H
 #define C_LIST_H
 
-#include <list>
+#include "node.h"
 
-template <typename T, typename _Alloc = std::allocator<T>>
-class List : protected _List_base<T, _Alloc>
+
+template <typename T, typename Alloc = std::allocator<Node<T>>>
+class c_list
 {
 private:
-    // Объявление структуры узла для использования в классе Iterator
-    struct Node;
+    // Голова односвязного списка
+    Node<T>* m_head = nullptr;
+    Node<T>* m_tail = nullptr;
+    Alloc allocator_;
 
-public:
+
     // Класс итератора односвязного списка
     class Iterator {
     public:
-        Iterator( Node* node ) : m_node( node ) { }
+        explicit Iterator( Node<T>* node ) : m_node( node ) { }
 
         // Проверка на равенство
         bool operator==( const Iterator& other ) const {
@@ -45,29 +48,35 @@ public:
         }
 
     private:
-        Node* m_node;
+        Node<T>* m_node{};
     };
 
 public:
-    List() : m_head( NULL ) {
+    c_list() : m_head( NULL ) {
     }
 
-    ~List() {
+    ~c_list() {
         while( m_head ) {
             remove();
         }
     }
 
     // Добавление узла в список
-    void append( const T &t ) {
+    void emplace( int dummy, const T &t ) {
         // Создаем новый узел для значения
         // Не забудем проверить, что память удалось выделить
-        if( Node* node = new Node( t ) ) {
-            // Новый узел привязывается к старому головному элементу
-            node->m_next = m_head;
+        if (auto node = allocator_.allocate(1)) {
+            allocator_.construct(node, t);
+            if (m_head) {
+                m_tail->m_next = node;
+            } else {
 
-            // Новый узел сам становится головным элементом
-            m_head = node;
+                // Новый узел сам становится головным элементом
+                m_head = node;
+                // Новый узел привязывается к старому головному элементу
+                node->m_next = nullptr;
+            }
+            m_tail = node;
         }
     }
 
@@ -75,11 +84,13 @@ public:
     void remove() {
         if( m_head ) { // Если список не пуст:
             // Сохраняем указатель на второй узел, который станет новым головным элементом
-            Node* newHead = m_head->m_next;
+            Node<T>* newHead = m_head->m_next;
 
             // Освобождаем память, выделенную для удаляемого головного элемента
-            delete m_head;
+            //delete m_head;
 
+            allocator_.destroy(m_head);
+            allocator_.deallocate(m_head, 1);
             // Назначаем новый головной элемент
             m_head = newHead;
         } // Иначе могли бы возбудить исключение
@@ -97,7 +108,7 @@ public:
     // Получить итератор на конец списка
     Iterator end() const {
         // ... и до упора, т.е. NULL
-        return Iterator( NULL );
+        return Iterator( nullptr );
     }
 
     // Получить размер списка
@@ -117,23 +128,7 @@ public:
         return s;
     }
 
-private:
-    // Структура узла односвязного списка
-    struct Node {
-        Node() : m_next( NULL ) { }
 
-        Node( const T& t ) : m_t( t ), m_next( NULL ) { }
-
-        // Значение узла
-        T m_t;
-
-        // Указатель на следующий узел
-        Node* m_next;
-    };
-
-    // Голова односвязного списка
-    Node* m_head;
 };
 
 #endif // C_LIST_H
-
