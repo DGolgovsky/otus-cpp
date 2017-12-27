@@ -22,10 +22,7 @@ private:
         explicit Iterator(Node<T>* node) : m_node( node ) {}
 
         bool operator==(const Iterator& other) const {
-            if (this == &other) {
-                return true;
-            }
-            return m_node == other.m_node;
+            return this == &other || m_node == other.m_node;
         }
 
         bool operator!=(const Iterator& other) const {
