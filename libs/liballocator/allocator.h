@@ -1,36 +1,67 @@
 #ifndef _ALLOCATOR_H_
 #define _ALLOCATOR_H_
 
-#include <vector>
-#include <string>
 #include <iostream>
-#include <algorithm>
 
-namespace cualloc
-{
-    using ushort = unsigned short;
-    using pool_t = std::vector<std::vector<ushort>>;
-
-    template<typename... Args>
-    auto filter(pool_t const &ip_pool, Args... args) noexcept -> pool_t
+namespace alloc {
+    template<class T, uint32_t reserve_size = 10>
+    class custom_allocator
     {
-        pool_t ret;
+    private:
+        T *ptr = nullptr;
+        T *ptr_head = nullptr;
 
-        std::vector<int> checker{args...};
-        auto sz = checker.size();
-        std::copy_if(ip_pool.cbegin(), ip_pool.cend(), std::back_inserter(ret), [&sz, &checker](auto it){
-            return std::equal(it.cbegin(), it.cbegin() + sz, checker.begin());
-        });
+    public:
+        using value_type = T;
 
-        return ret;
-    }
+        custom_allocator() noexcept {
+            if (reserve_size)
+                allocate(reserve_size);
+        }
 
-    auto filter_any(pool_t const &ip_pool, ushort ip) noexcept -> pool_t;
+        explicit custom_allocator(int n) noexcept {}
 
-    auto split(std::string const &str) -> std::vector<ushort>;
+        template<typename X>
+        explicit custom_allocator(const custom_allocator<X> &other) noexcept {}
 
-    auto fill(std::istream &is) -> pool_t;
-} // namespace ip_filter
+        T *allocate(std::size_t n) {
+            if (!ptr_head) {
+                ptr = reinterpret_cast<T *>(::operator new(n * sizeof(T)));
+                if (!ptr)
+                    throw std::bad_alloc();
+                ptr_head = ptr;
+                return ptr;
+            } else {
+                return ptr++;
+            }
+        }
 
+        void reserve(std::size_t size) {
+            if (size)
+                allocate(size);
+        }
+
+        template<class U>
+        struct rebind {
+            typedef custom_allocator<U> other;
+        };
+
+        void deallocate(T *p, std::size_t) {
+            if (p == ptr_head) {// if there's not a pool, nothing to do
+                ::operator delete(ptr_head);
+                ptr_head = nullptr;
+            }
+        }
+
+        template<typename U, typename ... Args>
+        void construct(U *p, Args &&... args) {
+            new(p) U(std::forward<Args>(args)...);
+        }
+
+        void destroy(T *p) {
+            p->~T();
+        }
+    };
+} // namespace alloc
 #endif
 
