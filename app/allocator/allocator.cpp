@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
-#include "liballocator/allocator.h"
-#include "liballocator/container.h"
+#include "cust_allocator/allocator.h"
+#include "container/container.h"
 
 template <typename T>
 void fill_container(T &cont, uint32_t sz, bool factorial = true)

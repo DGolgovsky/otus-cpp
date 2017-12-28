@@ -1,8 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-#include "liballocator/container.h"
-#include "liballocator/allocator.h"
+#include "container/container.h"
 
 TEST_CASE("Input 0", "[container]") {
     auto custom_list = container<int>{};
@@ -18,6 +17,3 @@ TEST_CASE("Input 0", "[container]") {
     REQUIRE(str == "0123456789");
 }
 
-TEST_CASE("Input 1", "[allocator]") {
-    
-}

@@ -1,2 +1,0 @@
-custom_add_tests(liballocatortest liballocator)
-custom_compiler_opts(liballocatortest)

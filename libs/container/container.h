@@ -52,7 +52,7 @@ public:
         }
     }
 
-    void emplace(int, const T &t) {
+    void emplace(T, const T &t) {
         if (auto node = allocator_.allocate(1)) {
             allocator_.construct(node, t);
             if (m_head) {
