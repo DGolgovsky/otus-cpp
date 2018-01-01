@@ -1,19 +1,10 @@
 function(custom_compiler_opts TARGET)
-	target_compile_features(${TARGET}
-	    PUBLIC
-			cxx_std_14
-			cxx_variadic_templates
-			cxx_nullptr
-		PRIVATE
-			cxx_lambdas
-	)
-	set_target_properties(${TARGET} PROPERTIES
+    set_target_properties(${TARGET} PROPERTIES
 	    CXX_STANDARD 14
 	    CXX_STANDARD_REQUIRED ON
 	)
     if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS "-stdlib=libc++ -pthread")
-        target_link_libraries(${TARGET} pthread)
     endif()
     target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
     if (CMAKE_COMPILER_IS_GNUCC)
@@ -23,6 +14,7 @@ function(custom_compiler_opts TARGET)
             target_compile_options(${TARGET} --coverage -O2)
         endif()
     endif()
+    target_link_libraries(${TARGET} pthread)
 endfunction()
 
 function(custom_add_library TARGET)

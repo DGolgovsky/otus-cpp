@@ -1,0 +1,3 @@
+custom_add_tests(containertest container)
+custom_compiler_opts(containertest)
+
