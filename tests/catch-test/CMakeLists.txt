@@ -1,3 +1,3 @@
-custom_add_tests(containertest container)
-custom_compiler_opts(containertest)
+custom_add_tests(ip_filter_test libfilter)
+custom_compiler_opts(ip_filter_test)
 

@@ -23,7 +23,7 @@ script:
 deploy:
     provider: script
     skip_cleanup: true
-    script: curl -T build/allocator-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/allocator/$TRAVIS_BUILD_NUMBER/allocator-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    script: curl -T build/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_print/$TRAVIS_BUILD_NUMBER/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io
