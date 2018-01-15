@@ -6,11 +6,20 @@
 #include <iostream>
 #include <algorithm>
 
+/**
+ * IP Filter main header namespace
+ */
 namespace ip_filter
 {
     using ushort = unsigned short;
     using pool_t = std::vector<std::vector<ushort>>;
 
+    /**
+     * \brief Filter with template
+     *
+     * Analogue of filter_any function.
+     * Matching with template
+     */
     template<typename... Args>
     auto filter(pool_t const &ip_pool, Args... args) noexcept -> pool_t
     {
@@ -25,10 +34,19 @@ namespace ip_filter
         return ret;
     }
 
+    /**
+     * Filter of entire pool for any match
+     */
     auto filter_any(pool_t const &ip_pool, ushort ip) noexcept -> pool_t;
 
+    /**
+     * Splitting input stream in values
+     */
     auto split(std::string const &str) -> std::vector<ushort>;
 
+    /**
+     * Used to filling main pool of addr
+     */
     auto fill(std::istream &is) -> pool_t;
 } // namespace ip_filter
 

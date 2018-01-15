@@ -1,5 +1,11 @@
 #include "libfilter/filter.h"
 
+/**
+ * \brief Main output function
+ *
+ * This function used to print output result
+ * with std out
+ */
 template<typename T>
 void print_out(std::vector<std::vector<T>> const &v) noexcept {
     for (const auto &ip : v) {
@@ -13,11 +19,18 @@ void print_out(std::vector<std::vector<T>> const &v) noexcept {
     }
 }
 
+/**
+ * \brief Main program function
+ *
+ * Used with all c++ programs to init start
+ */
 int main()
 {
-    std::vector<std::vector<unsigned short>> ip_pool = ip_filter::fill(std::cin);
+    std::vector<std::vector<unsigned short>> ip_pool = ip_filter::fill(std::cin); ///< main pool of addresses
 
     // [DONE] Reverse lexicographically sort
+    /// \brief Sorting function
+    /// Using std sort algorithm with lambdas
     std::sort(ip_pool.begin(), ip_pool.end()
              ,[](auto const &lhs, auto const &rhs) { // Comparator
                 for (std::size_t i = 0; i != 4; ++i) {

@@ -1,5 +1,7 @@
 #include "filter.h"
 
+/// \brief Testing doxygen
+
 namespace ip_filter
 {
     using ushort = unsigned short;
