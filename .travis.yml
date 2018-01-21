@@ -29,7 +29,7 @@ deploy:
     keep-history: true
     local_dir: docs/
     on:
-        branch: gh-pages
+        branch: master
 
     provider: script
     script: curl -T build/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
