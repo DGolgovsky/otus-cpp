@@ -19,20 +19,19 @@ before_script:
 
 script:
     - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
-    - doxygen
+    - doxygen $TRAVIS_BUILD_DIR/Doxyfile
 
 deploy:
-    skip_cleanup: true
-    
-    provider: pages
-    github_token: $GITHUB-TOKEN
-    keep-history: true
-    local_dir: docs/
-    on:
-        branch: master
-
-    provider: script
-    script: curl -T build/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    - provider: pages
+      skip_cleanup: true
+      github_token: $GITHUB-TOKEN
+      keep-history: true
+      local_dir: docs
+      on:
+          branch: master
+    - provider: script
+      skip_cleanup: true
+      script: curl -T build/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io
