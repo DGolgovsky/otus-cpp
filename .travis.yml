@@ -2,10 +2,8 @@ sudo: false
 language: cpp
 
 branches:
-# whitelist
     only:
         - master
-        - 04.HW
 
 addons:
     apt:
@@ -34,7 +32,7 @@ deploy:
         branch: gh-pages
 
     provider: script
-    script: curl -T build/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_print/$TRAVIS_BUILD_NUMBER/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    script: curl -T build/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io

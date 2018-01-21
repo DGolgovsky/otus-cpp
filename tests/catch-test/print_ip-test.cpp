@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-#include "libfilter/filter.h"
+#include "libprinter/printer.h"
 
 TEST_CASE("Input 0", "[fill]") {
     std::stringstream ss;
