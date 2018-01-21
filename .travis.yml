@@ -8,9 +8,9 @@ branches:
 addons:
     apt:
         sources:
-            - ubuntu-toolchain-r-test
+            #- ubuntu-toolchain-r-test
         packages:
-            - g++-5
+            #- g++-5
             - doxygen
             - graphviz
 
@@ -18,13 +18,14 @@ before_script:
     # Nothing to do
 
 script:
-    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+    #- CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+	- ./compile.sh
     - doxygen $TRAVIS_BUILD_DIR/Doxyfile
 
 deploy:
     - provider: pages
       skip_cleanup: true
-      github_token: $GITHUB-TOKEN
+      github_token: $GH_PAGES_TOKEN
       keep-history: true
       local_dir: docs
       on:
