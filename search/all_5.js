@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../print__ip_8cpp.html#a2b760810e5bb0cfb55f0c7d6d74d4438',1,'main(int, char const **):&#160;print_ip.cpp'],['../_c_make_c_x_x_compiler_id_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCXXCompilerId.cpp']]]
+  ['otus_2dcpp',['OTUS-Cpp',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['operator_28_29',['operator()',['../structprint__pod__ip.html#a42aa34d1fa4354af80a4e063a0595a3f',1,'print_pod_ip::operator()()'],['../structprint__complex__ip.html#ab03a64730d4d120b4396b23abd147900',1,'print_complex_ip::operator()()'],['../structprint__complex__ip_3_01std_1_1tuple_3_01_args_8_8_8_4_01_4.html#a1b65dbc2a95e1fa1d807e85c62c439fd',1,'print_complex_ip&lt; std::tuple&lt; Args...&gt; &gt;::operator()()']]]
 ];
