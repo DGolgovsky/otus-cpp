@@ -1,0 +1,8 @@
+<map id="type_is&lt; T &gt;" name="type_is&lt; T &gt;">
+<area shape="rect" id="node2" href="$struct_conditional.html" title="Conditional\&lt; T \&gt;" alt="" coords="286,79,405,105"/>
+<area shape="rect" id="node5" href="$structtype__is.html" title="type_is\&lt; U \&gt;" alt="" coords="296,129,395,156"/>
+<area shape="rect" id="node7" href="$structtype__is.html" title="type_is\&lt; print_pod\l_ip\&lt; T \&gt; \&gt;" alt="" coords="281,5,410,46"/>
+<area shape="rect" id="node3" href="$struct_conditional.html" title="Conditional\&lt; std::is\l_integral\&lt; T \&gt;::value,\l print_pod_ip\&lt; T \&gt;, print\l_complex_ip\&lt; T \&gt; \&gt;" alt="" coords="627,5,789,75"/>
+<area shape="rect" id="node4" href="$struct_ip_printer.html" title="This is a compile time adapter that defines what type of print functional object will be used..." alt="" coords="841,27,943,53"/>
+<area shape="rect" id="node6" href="$struct_conditional_3_01false_00_01_t_00_01_u_01_4.html" title="Conditional\&lt; false,\l T, U \&gt;" alt="" coords="643,122,773,163"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structtype__is.html" title="type_is\&lt; print_pod\l_ip\&lt; T \&gt; \&gt;" alt="" coords="6,19,135,61"/>
+<area shape="rect" id="node2" href="$struct_conditional.html" title="Conditional\&lt; std::is\l_integral\&lt; T \&gt;::value,\l print_pod_ip\&lt; T \&gt;, print\l_complex_ip\&lt; T \&gt; \&gt;" alt="" coords="185,5,346,75"/>
+<area shape="rect" id="node3" href="$struct_ip_printer.html" title="This is a compile time adapter that defines what type of print functional object will be used..." alt="" coords="395,27,498,53"/>
+</map>
