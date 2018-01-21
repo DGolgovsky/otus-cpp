@@ -13,18 +13,30 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             - g++-5
+            - doxygen
+            - graphviz
 
 before_script:
     # Nothing to do
 
 script:
     - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+    - doxygen
 
 deploy:
-    provider: script
     skip_cleanup: true
-    script: curl -T build/allocator-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/allocator/$TRAVIS_BUILD_NUMBER/allocator-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    
+    provider: pages
+    github_token: $GITHUB-TOKEN
+    keep-history: true
+    local_dir: docs/
+    on:
+        branch: gh-pages
+
+    provider: script
+    script: curl -T build/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/ip_print/$TRAVIS_BUILD_NUMBER/ip_print-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io
     - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
+
