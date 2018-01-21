@@ -1,5 +1,5 @@
 /**
- * \file ip_print.cpp
+ * @file ip_print.cpp
  *
  * Methods for printing ip addresses represented in different ways.
  */
@@ -52,8 +52,8 @@ static std::enable_if_t<!std::is_integral<T>::value, void> ip_print(const T& con
 /**
  * \defgroup helpers
  * Helper structs for printing ip addresses as tuples of same types.
+ * @{
  */
-/**@{*/
 template <size_t I>
 struct PrintTuple
 {
@@ -77,7 +77,9 @@ struct PrintTuple<0>
     template <typename... Types>
     static constexpr void Print(const std::tuple<Types...>&) {}
 };
-/**@}*/
+/**
+ * @}
+ */
 
 /**
  * @brief Prints out contents of an ip address represented as a tuple.
@@ -90,7 +92,7 @@ static void ip_print(const std::tuple<Types...>& tuple)
 }
 
 /**
- * \brief Main program function
+ * @brief Main program function
  *
  * Used with all c++ programs to init start
  * Main function to demonstrate ip_print
