@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_28_29',['operator()',['../structprint__pod__ip.html#a42aa34d1fa4354af80a4e063a0595a3f',1,'print_pod_ip::operator()()'],['../structprint__complex__ip.html#ab03a64730d4d120b4396b23abd147900',1,'print_complex_ip::operator()()'],['../structprint__complex__ip_3_01std_1_1tuple_3_01_args_8_8_8_4_01_4.html#a1b65dbc2a95e1fa1d807e85c62c439fd',1,'print_complex_ip&lt; std::tuple&lt; Args...&gt; &gt;::operator()()']]]
+  ['print',['print',['../structprint__tuple.html#aa417c03f6240893eefa2b0b879096743',1,'print_tuple::print()'],['../structprint__tuple_3_010_01_4.html#a29fb9cde4f1f2f3e58369df45270f121',1,'print_tuple&lt; 0 &gt;::print()']]],
+  ['print_5fip',['print_ip',['../printer_8h.html#a2df488bd0bacba481c82d34310a23102',1,'printer.h']]]
 ];
