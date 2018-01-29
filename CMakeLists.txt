@@ -8,7 +8,7 @@ endif()
 
 include(custom_cmake/functions.cmake)
 
-#add_subdirectory(libs/libprinter)
+add_subdirectory(libs/libprinter)
 add_subdirectory(app/print_ip)
 
 if(BUILD_TESTING)

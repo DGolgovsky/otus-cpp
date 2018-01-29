@@ -1,141 +1,58 @@
 /**
  * @file print_ip.cpp
+ * @author DGolgovsky
+ * @date 2018
+ * @brief OTUS C++ homework #4
  *
- * Methods for printing ip addresses represented in different ways.
+ * Print ip addresses represented in different ways.
  */
-#include <iostream>
-#include <type_traits>
+
+/**
+ * @mainpage
+ * The program for printing ip-addresses.
+ * The address can be represented as an arbitrary integer type.
+ * The representation does not depend on the type sign.
+ * Displays the address byte, beginning with the oldest one with the "." symbol, as a separator.
+ * The address can be represented as a string. It is displayed as is.
+ * The address can be represented in the form of containers std::list, std::vector.
+ * The contents of the container are displayed element-by-element and are separated "."
+ */
+
 #include <list>
 #include <vector>
 #include <tuple>
-#include <string>
-
-
-/**
- * @brief Integral types
- *
- * Prints out contents of an ip address represented as an integral type.
- * Except doubles and strings
- */
-template <typename T>
-static std::enable_if_t<std::is_integral<T>::value, void> ip_print(T value)
-{
-    while (true)
-    {
-        std::cout << (value & 0xFF);
-        value >>= 8;
-        if (value == 0)
-        {
-            std::cout << std::endl;
-            break;
-        }
-        else
-            std::cout << ".";
-    }
-}
+#include "libprinter/printer.h"
 
 /**
- * @brief Prints out contents of an ip address represented as a vector or a list.
- */
-template <typename T>
-static std::enable_if_t<!std::is_integral<T>::value, void> ip_print(const T& container)
-{
-    for (auto it = container.begin(); it != container.end(); ++it)
-    {
-        std::cout << *it;
-        if (it != std::prev(container.end()))
-            std::cout << ".";
-    }
-    std::cout << std::endl;
-}
-
-/**
- * \defgroup helpers
- * Helper structs for printing ip addresses as tuples of same types.
- * @{
- */
-template <size_t I>
-struct PrintTuple
-{
-    template <typename Type0, typename... Types>
-    static constexpr void Print(const std::tuple<Type0, Types...>& tuple)
-    {
-        auto element = std::get<sizeof...(Types) + 1 - I>(tuple);
-        static_assert (std::is_same<Type0, decltype(element)>::value, "different types in tuple!");
-
-        std::cout << element;
-        if (I > 1)
-            std::cout << ".";
-
-        PrintTuple<I - 1>::Print(tuple);
-    }
-};
-
-template <>
-struct PrintTuple<0>
-{
-    template <typename... Types>
-    static constexpr void Print(const std::tuple<Types...>&) {}
-};
-/**
- * @}
- */
-
-/**
- * @brief Prints out contents of an ip address represented as a tuple.
- */
-template <typename... Types>
-static void ip_print(const std::tuple<Types...>& tuple)
-{
-    PrintTuple<sizeof...(Types)>::Print(tuple);
-    std::cout << std::endl;
-}
-
-/**
- * @brief Main program function
+ * @brief App's main function
  *
  * Used with all c++ programs to init start
- * Main function to demonstrate ip_print
+ * Main function to demonstrate print_ip
  */
 int main(int, char const **)
 {
-    try
-    {
-        ip_print(0); ///< 1 byte
-        ip_print(1);
-        ip_print(255);
-        ip_print(256);
-        ip_print(1234567890);
-        ip_print(1234567890123456);
+    /**
+     * @brief Task Condition
+     * Печать адреса как char(-1)
+     * Печать адреса как short(0)
+     * Печать адреса как int(2130706433)
+     * Печать адреса как long(8875824491850138409)
+     * Печать адреса как std::string
+     * Печать адреса как std::vector
+     * Печать адреса как std::list
+     * Опционально. Печать адреса как std::tuple
+     */
 
-        ip_print(std::list<int>{0, 1, 2, 3});
+    print_ip(char(-1));
+    print_ip(short(0));
+    print_ip(int(2130706433));
+    print_ip(long(8875824491850138409));
 
-        ip_print(std::vector<std::string>{"abc", "def", "gij", "klm", "nop", "rst"});
+    print_ip(std::string("255.255.255.255"));
+    print_ip(std::vector<int>{172, 31, 19, 63});
+    print_ip(std::list<int>{192, 168, 1, 42});
 
-        ip_print(std::tuple<int, int, int, int>{127, 0, 0, 1});
-
-        /* Another tests */
-        int  a = 5;
-        char c = 0;
-        std::vector<unsigned long> testv = { 1, 2, 3, 4 };
-
-        std::string tests = { "12734" };
-
-        auto tuple_ip = std::make_tuple(192, 168, 3, 17);
-
-        std::tuple<char, unsigned char, long, int> wrong_tuple_ip{ 1, 6, 4444, 66666 };
-
-        ip_print(a);
-        ip_print(c);
-        ip_print(testv);
-        ip_print(tests);
-        ip_print(tuple_ip);
-        //ip_print(wrong_tuple_ip);
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl; ///< console error output
-    }
+    print_ip(std::make_tuple(10, 15, 2, 101));
 
     return 0;
 }

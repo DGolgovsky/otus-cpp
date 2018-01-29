@@ -1,3 +1,3 @@
-custom_add_tests(ip_filter_test libfilter)
-custom_compiler_opts(ip_filter_test)
+custom_add_tests(print_ip_test libprinter)
+custom_compiler_opts(print_ip_test)
 
