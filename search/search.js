@@ -7,13 +7,15 @@
 
 var indexSectionsWithContent =
 {
-  0: "chmoprt",
+  0: "chimoprt",
   1: "p",
   2: "pr",
   3: "mpt",
-  4: "c",
-  5: "h",
-  6: "o"
+  4: "h",
+  5: "i",
+  6: "c",
+  7: "h",
+  8: "o"
 };
 
 var indexSectionNames =
@@ -22,9 +24,11 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "defines",
-  5: "groups",
-  6: "pages"
+  4: "variables",
+  5: "typedefs",
+  6: "defines",
+  7: "groups",
+  8: "pages"
 };
 
 function convertToId(search)

@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,7 +88,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">printer.h File Reference</div>  </div>
 </div><!--header-->
@@ -99,13 +101,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;bitset&gt;</code><br/>
 <code>#include &lt;utility&gt;</code><br/>
+<code>#include &lt;experimental/type_traits&gt;</code><br/>
 <code>#include &quot;<a class="el" href="print__helper_8h_source.html">print_helper.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for printer.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="printer_8h__incl.png" border="0" usemap="#libs_2libprinter_2printer_8h" alt=""/></div>
 <map name="libs_2libprinter_2printer_8h" id="libs_2libprinter_2printer_8h">
-<area shape="rect" id="node5" href="print__helper_8h.html" title="print_helper.h" alt="" coords="259,80,359,107"/></map>
+<area shape="rect" id="node6" href="print__helper_8h.html" title="print_helper.h" alt="" coords="445,80,544,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -117,12 +120,27 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="printer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:adeb62dd2fdad45ba0daea09fb082502b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:adeb62dd2fdad45ba0daea09fb082502b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="printer_8h.html#adeb62dd2fdad45ba0daea09fb082502b">iterator_t</a> = typename T::iterator</td></tr>
+<tr class="memdesc:adeb62dd2fdad45ba0daea09fb082502b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Containers.  <a href="#adeb62dd2fdad45ba0daea09fb082502b">More...</a><br/></td></tr>
+<tr class="separator:adeb62dd2fdad45ba0daea09fb082502b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2df488bd0bacba481c82d34310a23102"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if&lt; std::is_same&lt; T, std::string &gt;::value, T * &gt;::type  = nullptr&gt; </td></tr>
-<tr class="memitem:a2df488bd0bacba481c82d34310a23102"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="printer_8h.html#a2df488bd0bacba481c82d34310a23102">print_ip</a> (T &amp;&amp;container)</td></tr>
-<tr class="memdesc:a2df488bd0bacba481c82d34310a23102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Containers (std::string)  <a href="#a2df488bd0bacba481c82d34310a23102">More...</a><br/></td></tr>
-<tr class="separator:a2df488bd0bacba481c82d34310a23102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e9f3e11ab5013f49d88f43efee2534"><td class="memTemplParams" colspan="2">template&lt;class Container &gt; </td></tr>
+<tr class="memitem:a50e9f3e11ab5013f49d88f43efee2534"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a> (const Container &amp;container)</td></tr>
+<tr class="separator:a50e9f3e11ab5013f49d88f43efee2534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a42a7c81c65f71c1e8717f72a9f4568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a> (std::string const &amp;container)</td></tr>
+<tr class="memdesc:a4a42a7c81c65f71c1e8717f72a9f4568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Containers (std::string)  <a href="#a4a42a7c81c65f71c1e8717f72a9f4568">More...</a><br/></td></tr>
+<tr class="separator:a4a42a7c81c65f71c1e8717f72a9f4568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad01af4bb2a5d3c731f2a3b156e88e961"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad01af4bb2a5d3c731f2a3b156e88e961"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="printer_8h.html#ad01af4bb2a5d3c731f2a3b156e88e961">has_iterator</a> = std::experimental::is_detected_v&lt;<a class="el" href="printer_8h.html#adeb62dd2fdad45ba0daea09fb082502b">iterator_t</a>, T&gt;</td></tr>
+<tr class="separator:ad01af4bb2a5d3c731f2a3b156e88e961"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="printer_8h.html" title="printer.h for OTUS C++ homework #4 ">printer.h</a> for OTUS C++ homework #4 </p>
@@ -131,17 +149,68 @@ Functions</h2></td></tr>
 <p>Contain templates for IP printing </p>
 
 <p>Definition in file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a2df488bd0bacba481c82d34310a23102"></a>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="adeb62dd2fdad45ba0daea09fb082502b"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename std::enable_if&lt; std::is_same&lt; T, std::string &gt;::value, T * &gt;::type  = nullptr&gt; </div>
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="printer_8h.html#adeb62dd2fdad45ba0daea09fb082502b">iterator_t</a> =  typename T::iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Containers. </p>
+<p>Prints out contents of an ip address represented as an container (vector or a list). Except std::string</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>- container type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">container</td><td>- container object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="printer_8h_source.html#l00051">51</a> of file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a50e9f3e11ab5013f49d88f43efee2534"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Container &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void print_ip </td>
           <td>(</td>
-          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"><em>container</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8h_source.html#l00057">57</a> of file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a42a7c81c65f71c1e8717f72a9f4568"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_ip </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>container</em></td><td>)</td>
           <td></td>
         </tr>
@@ -164,14 +233,31 @@ template&lt;typename T , typename std::enable_if&lt; std::is_same&lt; T, std::st
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="printer_8h_source.html#l00073">73</a> of file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
+<p>Definition at line <a class="el" href="printer_8h_source.html#l00078">78</a> of file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ad01af4bb2a5d3c731f2a3b156e88e961"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool has_iterator = std::experimental::is_detected_v&lt;<a class="el" href="printer_8h.html#adeb62dd2fdad45ba0daea09fb082502b">iterator_t</a>, T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8h_source.html#l00054">54</a> of file <a class="el" href="printer_8h_source.html">printer.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 29 2018 07:52:23 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 31 2018 06:36:46 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
