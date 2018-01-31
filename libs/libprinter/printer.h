@@ -12,7 +12,7 @@
 #include <iostream>
 #include <bitset>
 #include <utility>
-
+#include <experimental/type_traits>
 #include "print_helper.h"
 
 /**
@@ -23,7 +23,7 @@
  *
  * @tparam T - integral type
  * @param[in] value - argument
- * @return void
+ * @returns void
  */
 template <typename T>
 static std::enable_if_t<std::is_integral<T>::value, void> print_ip(T &&value)
@@ -45,19 +45,26 @@ static std::enable_if_t<std::is_integral<T>::value, void> print_ip(T &&value)
  *
  * @tparam T - container type
  * @param[in] container - container object
- * @return void
+ * @returns void
  */
-template <typename T>
-static std::enable_if_t<!std::is_integral<T>::value, void> print_ip(T const &container)
-{
-    for (auto it = container.begin(); it != container.end(); ++it) {
-        std::cout << *it;
-        if (it != std::prev(container.end()))
-            std::cout << ".";
-    }
-    std::cout << std::endl;
-}
+template<typename T>
+using iterator_t = typename T::iterator;
 
+template<typename T>
+constexpr bool has_iterator = std::experimental::is_detected_v<iterator_t, T>;
+
+template<class Container>
+void print_ip(const Container& container)
+{
+    if constexpr (has_iterator<Container>) {
+        for (auto it = container.cbegin(); it != container.cend(); ++it) {
+            std::cout << *it;
+            if (it != std::prev(container.cend()))
+                std::cout << ".";
+        }
+        std::cout << std::endl;
+    }
+}
 /**
  * @brief Containers (std::string)
  *
@@ -67,10 +74,8 @@ static std::enable_if_t<!std::is_integral<T>::value, void> print_ip(T const &con
  * @param[in] container - container object
  * @returns void
  */
-template<typename T,
-         typename std::enable_if<
-                 std::is_same<T, std::string>::value, T*>::type = nullptr>
-void print_ip(T &&container)
+
+void print_ip(std::string const &container)
 {
     std::cout << container << std::endl;
 }
