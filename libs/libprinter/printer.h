@@ -54,16 +54,16 @@ template<typename T>
 constexpr bool has_iterator = std::experimental::is_detected_v<iterator_t, T>;
 
 template<class Container>
-void print_ip(const Container& container)
+static std::enable_if_t<has_iterator<Container>, void> print_ip(Container const &container)
 {
-    if constexpr (has_iterator<Container>) {
+    //if constexpr (has_iterator<Container>) {
         for (auto it = container.cbegin(); it != container.cend(); ++it) {
             std::cout << *it;
             if (it != std::prev(container.cend()))
                 std::cout << ".";
         }
         std::cout << std::endl;
-    }
+    //}
 }
 /**
  * @brief Containers (std::string)
