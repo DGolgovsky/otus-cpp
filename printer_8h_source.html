@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="print__helper_8h.html">print_helper.h</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">static</span> std::enable_if_t&lt;std::is_integral&lt;T&gt;::value, <span class="keywordtype">void</span>&gt; <a class="code" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a>(T &amp;&amp;value)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">static</span> std::enable_if_t&lt;std::is_integral&lt;T&gt;::value, <span class="keywordtype">void</span>&gt; <a class="code" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a>(T &amp;&amp;value)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::bitset&lt;8 * sizeof(T)&gt; bit(value);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> end = <span class="keyword">sizeof</span>(T) - 1;</div>
@@ -119,24 +119,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="printer_8h.html#ad01af4bb2a5d3c731f2a3b156e88e961">   54</a></span>&#160;constexpr <span class="keywordtype">bool</span> <a class="code" href="printer_8h.html#ad01af4bb2a5d3c731f2a3b156e88e961">has_iterator</a> = std::experimental::is_detected_v&lt;iterator_t, T&gt;;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> Container&gt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a>(<span class="keyword">const</span> Container&amp; container)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">static</span> std::enable_if_t&lt;has_iterator&lt;Container&gt;, <span class="keywordtype">void</span>&gt; <a class="code" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a>(Container <span class="keyword">const</span> &amp;container)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> constexpr (has_iterator&lt;Container&gt;) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//if constexpr (has_iterator&lt;Container&gt;) {</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = container.cbegin(); it != container.cend(); ++it) {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            std::cout &lt;&lt; *it;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span> (it != std::prev(container.cend()))</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;.&quot;</span>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">//}</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">   78</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a>(std::string <span class="keyword">const</span> &amp;container)</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">   78</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a>(std::string <span class="keyword">const</span> &amp;container)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::cout &lt;&lt; container &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Types&gt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a>(std::tuple&lt;Types...&gt; <span class="keyword">const</span> &amp;tuple)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a>(std::tuple&lt;Types...&gt; <span class="keyword">const</span> &amp;tuple)</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="structprint__tuple.html">print_tuple</a>&lt;<span class="keyword">sizeof</span>...(Types)&gt;::print(tuple);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    std::cout &lt;&lt; std::endl;</div>
@@ -144,12 +144,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structprint__tuple_html"><div class="ttname"><a href="structprint__tuple.html">print_tuple</a></div><div class="ttdef"><b>Definition:</b> <a href="print__helper_8h_source.html#l00010">print_helper.h:10</a></div></div>
 <div class="ttc" id="printer_8h_html_adeb62dd2fdad45ba0daea09fb082502b"><div class="ttname"><a href="printer_8h.html#adeb62dd2fdad45ba0daea09fb082502b">iterator_t</a></div><div class="ttdeci">typename T::iterator iterator_t</div><div class="ttdoc">Containers. </div><div class="ttdef"><b>Definition:</b> <a href="printer_8h_source.html#l00051">printer.h:51</a></div></div>
 <div class="ttc" id="printer_8h_html_ad01af4bb2a5d3c731f2a3b156e88e961"><div class="ttname"><a href="printer_8h.html#ad01af4bb2a5d3c731f2a3b156e88e961">has_iterator</a></div><div class="ttdeci">constexpr bool has_iterator</div><div class="ttdef"><b>Definition:</b> <a href="printer_8h_source.html#l00054">printer.h:54</a></div></div>
-<div class="ttc" id="printer_8h_html_a50e9f3e11ab5013f49d88f43efee2534"><div class="ttname"><a href="printer_8h.html#a50e9f3e11ab5013f49d88f43efee2534">print_ip</a></div><div class="ttdeci">void print_ip(const Container &amp;container)</div><div class="ttdef"><b>Definition:</b> <a href="printer_8h_source.html#l00057">printer.h:57</a></div></div>
+<div class="ttc" id="printer_8h_html_a4a42a7c81c65f71c1e8717f72a9f4568"><div class="ttname"><a href="printer_8h.html#a4a42a7c81c65f71c1e8717f72a9f4568">print_ip</a></div><div class="ttdeci">void print_ip(std::string const &amp;container)</div><div class="ttdoc">Containers (std::string) </div><div class="ttdef"><b>Definition:</b> <a href="printer_8h_source.html#l00078">printer.h:78</a></div></div>
 <div class="ttc" id="print__helper_8h_html"><div class="ttname"><a href="print__helper_8h.html">print_helper.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 31 2018 06:36:46 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 5 2018 06:47:15 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
