@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
 if(DEFINED ENV{TRAVIS_BUILD_NUMBER})
-    project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+    project(editor VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 else()
-    project(print_ip VERSION 0.0.1)
+    project(editor VERSION 0.0.1)
 endif()
 
 include(custom_cmake/functions.cmake)
 
-add_subdirectory(libs/libprinter)
-add_subdirectory(app/print_ip)
+add_subdirectory(libs/libeditor)
+add_subdirectory(app/editor)
 
 if(BUILD_TESTING)
     enable_testing()

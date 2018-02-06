@@ -1,7 +1,7 @@
 /**
- * @file printer.cpp
+ * @file editor_ui.cpp
  *
  * Dummy cpp-file. Just for compile.
  */
 
-#include "printer.h"
+#include "editor_ui.h"
