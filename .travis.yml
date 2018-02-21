@@ -31,7 +31,7 @@ deploy:
           branch: master
     - provider: script
       skip_cleanup: true
-      script: curl -T build/editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/editor/$TRAVIS_BUILD_NUMBER/editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+      script: curl -T build/vector_editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/vector_editor/$TRAVIS_BUILD_NUMBER/vector_editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io

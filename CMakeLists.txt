@@ -55,5 +55,3 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Dmitry Golgovsky")
 set(CPACK_PACKAGE_CONTACT d.westcoast@aol.com)
 
 include(CPack)
-
-
