@@ -10,28 +10,18 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - g++-7
-            - doxygen
-            - graphviz
+            - g++-5
 
 before_script:
     # Nothing to do
 
 script:
-    - CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 ./compile.sh
-    - doxygen $TRAVIS_BUILD_DIR/Doxyfile
+    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
 
 deploy:
-    - provider: pages
-      skip_cleanup: true
-      github_token: $GH_PAGES_TOKEN
-      keep-history: true
-      local_dir: docs
-      on:
-          branch: master
     - provider: script
       skip_cleanup: true
-      script: curl -T build/vector_editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/vector_editor/$TRAVIS_BUILD_NUMBER/vector_editor-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+      script: curl -T build/matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/matrix/$TRAVIS_BUILD_NUMBER/matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io
