@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['has_5fiterator',['has_iterator',['../printer_8h.html#ad01af4bb2a5d3c731f2a3b156e88e961',1,'printer.h']]]
+  ['s_5fid',['s_id',['../class_shape.html#a59a72a57702d12750d9f3b90bd9e807f',1,'Shape']]],
+  ['s_5fname',['s_name',['../class_shape.html#aa9679fb8939959d20e48fdd9103aaae9',1,'Shape']]]
 ];

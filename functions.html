@@ -23,9 +23,9 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">OTUS C++ Course HW
-   &#160;<span id="projectnumber">04</span>
+   &#160;<span id="projectnumber">05</span>
    </div>
-   <div id="projectbrief">OTUS homework</div>
+   <div id="projectbrief">OTUS Homework</div>
   </td>
  </tr>
  </tbody>
@@ -40,7 +40,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -65,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -72,6 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -80,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,15 +92,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="contents">
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div><ul>
-<li>print()
-: <a class="el" href="structprint__tuple.html#aa417c03f6240893eefa2b0b879096743">print_tuple&lt; I &gt;</a>
-, <a class="el" href="structprint__tuple_3_010_01_4.html#a29fb9cde4f1f2f3e58369df45270f121">print_tuple&lt; 0 &gt;</a>
+<li>close()
+: <a class="el" href="class_u_i.html#ada315f19b8c0475f8c7486c4ff438874">UI</a>
+</li>
+<li>create()
+: <a class="el" href="class_circle.html#a8edf73b7e2142efae1412b07ec82b3db">Circle</a>
+, <a class="el" href="class_rectangle.html#ad28be95b626454298a323de1dd8dc76a">Rectangle</a>
+, <a class="el" href="class_shape.html#a452ffc7b06c571801c89045bbcf1c1cb">Shape</a>
+, <a class="el" href="class_triangle.html#a09430607f2106d3c6db954bf526dabd8">Triangle</a>
+</li>
+<li>create_shape()
+: <a class="el" href="class_work_space.html#adff459f2380ac6457d1a526d41293f6a">WorkSpace</a>
+</li>
+<li>exec()
+: <a class="el" href="class_u_i.html#adc43cc1af2cfe26e31b15592edc38068">UI</a>
+</li>
+<li>export_img()
+: <a class="el" href="class_u_i.html#a8b72ef0596459af22a7f94ab67a1d280">UI</a>
+</li>
+<li>get_objects()
+: <a class="el" href="class_work_space.html#a31b912f8a42d0d176deb8abe3e27f4b4">WorkSpace</a>
+</li>
+<li>id()
+: <a class="el" href="class_shape.html#aa75b7ded5e360a251d38ffe3a70b6537">Shape</a>
+</li>
+<li>import_img()
+: <a class="el" href="class_u_i.html#aa5650e63ba7f7080179e599db12ff43c">UI</a>
+</li>
+<li>name()
+: <a class="el" href="class_shape.html#ab0219a5934793fa9e4c9f8ff7426be88">Shape</a>
+, <a class="el" href="class_work_space.html#a09c618e0859aaa7a8f69819e352006d9">WorkSpace</a>
+</li>
+<li>remove()
+: <a class="el" href="class_circle.html#ae07c24ac93bf3944d43be1787c1ac2bc">Circle</a>
+, <a class="el" href="class_rectangle.html#a55960ff184130a9bd4778be75f5ee36a">Rectangle</a>
+, <a class="el" href="class_shape.html#a56a0fdb6c145893baed1bf9355d9a128">Shape</a>
+, <a class="el" href="class_triangle.html#a38c4f7a80a0ef3dda7bc90652b510b46">Triangle</a>
+</li>
+<li>remove_shape()
+: <a class="el" href="class_work_space.html#a036842d5252343cfa771170a57ec4229">WorkSpace</a>
+</li>
+<li>s_id
+: <a class="el" href="class_shape.html#a59a72a57702d12750d9f3b90bd9e807f">Shape</a>
+</li>
+<li>s_name
+: <a class="el" href="class_shape.html#aa9679fb8939959d20e48fdd9103aaae9">Shape</a>
+</li>
+<li>save()
+: <a class="el" href="class_u_i.html#a18aef05cda261a0f11acf10168d70d92">UI</a>
+</li>
+<li>save_as()
+: <a class="el" href="class_u_i.html#ae2c49659cce557c392bc242f178bc522">UI</a>
+</li>
+<li>set_objects()
+: <a class="el" href="class_work_space.html#a58918622d74c715b6dd5a1f8bc4c16aa">WorkSpace</a>
+</li>
+<li>UI()
+: <a class="el" href="class_u_i.html#a675985a56b5e87ebdc8e5884b9f2ee09">UI</a>
+</li>
+<li>WorkSpace()
+: <a class="el" href="class_work_space.html#aead802e05ab56f4d20ec36e6b85aa34f">WorkSpace</a>
+</li>
+<li>~Shape()
+: <a class="el" href="class_shape.html#ac8ad2fd02e1e94beeb98e65ab795cd56">Shape</a>
+</li>
+<li>~UI()
+: <a class="el" href="class_u_i.html#a1b23d0c64c7cbb3d143d90ec532a7ccd">UI</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 5 2018 06:47:15 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 21 2018 08:03:09 for OTUS C++ Course HW by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
