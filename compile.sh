@@ -2,7 +2,7 @@
 
 TESTS=OFF
 
-mkdir build && cd "$_"
+mkdir build && cd build
 cmake -DBUILD_TESTING=${TESTS} ..
 cmake --build . -- -j2
 case $TESTS in
