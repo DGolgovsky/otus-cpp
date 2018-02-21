@@ -1,58 +1,54 @@
 /**
- * @file print_ip.cpp
+ * @file editor.cpp
  * @author DGolgovsky
  * @date 2018
- * @brief OTUS C++ homework #4
+ * @brief OTUS C++ homework #5
  *
- * Print ip addresses represented in different ways.
+ * Prototype of simple graphical vector editor.
  */
 
 /**
  * @mainpage
- * The program for printing ip-addresses.
- * The address can be represented as an arbitrary integer type.
- * The representation does not depend on the type sign.
- * Displays the address byte, beginning with the oldest one with the "." symbol, as a separator.
- * The address can be represented as a string. It is displayed as is.
- * The address can be represented in the form of containers std::list, std::vector.
- * The contents of the container are displayed element-by-element and are separated "."
+ * Design a simple graphic vector editor.
+ * Prepare class layouts reflecting the structure of the future project.
+ *
+ * Functional for prototyping the following:
+ * - creating a new document
+ * - importing a document from a file
+ * - exporting a document to a file
+ * - creating a graphic primitive
+ * - delete a graphic primitive
+ *
+ * The main emphasis is on the controller template and polymorphism.
  */
 
-#include <list>
-#include <vector>
-#include <tuple>
-#include "libprinter/printer.h"
-
+#include "editor_ui.h"
 /**
  * @brief App's main function
  *
  * Used with all c++ programs to init start
  * Main function to demonstrate print_ip
  */
-int main(int, char const **)
+int main(int, char **)
 {
-    /**
-     * @brief Task Condition
-     * Печать адреса как char(-1)
-     * Печать адреса как short(0)
-     * Печать адреса как int(2130706433)
-     * Печать адреса как long(8875824491850138409)
-     * Печать адреса как std::string
-     * Печать адреса как std::vector
-     * Печать адреса как std::list
-     * Опционально. Печать адреса как std::tuple
-     */
+    UI editor;
 
-    print_ip(char(-1));
-    print_ip(short(0));
-    print_ip(int(2130706433));
-    print_ip(long(8875824491850138409));
+    Shape* circ = new Circle();
+    Shape* rect = new Rectangle();
 
-    print_ip(std::string("255.255.255.255"));
-    print_ip(std::vector<int>{172, 31, 19, 63});
-    print_ip(std::list<int>{192, 168, 1, 42});
+    editor.import_img("imported_img.svg");
+    editor.exec().create_shape(circ);
+    editor.exec().create_shape(rect);
 
-    print_ip(std::make_tuple(10, 15, 2, 101));
+    editor.export_img("exported_img.svg");
+
+    editor.exec().remove_shape(rect);
+    editor.exec().remove_shape(circ);
+
+    editor.close();
+
+    delete circ;
+    delete rect;
 
     return 0;
 }
