@@ -1,24 +1,13 @@
-#include "bulk.h"
+#include "interpreter.h"
 
 int main(int argc, char **argv)
 {
-    std::size_t cmds_count = 0;
-
-    if (argc > 1) {
-        cmds_count = static_cast<size_t>(atoi(argv[1])); // NOLINT
+    if (argc == 2) {
+        std::unique_ptr<interpreter> ipr = std::make_unique<interpreter>(std::stoi(argv[1]));
+        ipr->run();
     } else {
-        std::cerr << "Bad input. Need at least one argument." << std::endl;
-        return 2;
+        std::cerr << "Needed at least one argument.\n";
     }
-
-    Bulk blk(cmds_count);
-    std::string cmd;
-
-    while (std::getline(std::cin, cmd)) {
-        blk.read_cmds(cmd);
-    }
-
-    blk.write_cmds();
 
     return 0;
 }
