@@ -1,12 +1,10 @@
 #pragma once
 
-#include "observer.h"
 #include <vector>
 #include <ctime>
 
-class storage
+struct storage_t
 {
-public:
     time_t time;
     std::vector<std::string> cmds;
 
@@ -27,21 +25,24 @@ public:
         cmds.clear();
     }
 
-    void append(const std::string &cmd) {
+    void add(std::string const &cmd) {
         cmds.push_back(cmd);
     }
 
-    cmd_pipe_t make_pipe() {
-        cmd_pipe_t pipe;
-        pipe.time = time;
-        for (const auto &cmd : cmds) {
-            if (pipe.cmd_pipe.empty()) {
-                pipe.cmd_pipe.append(cmd);
+    block_t make_block(int seq_num) {
+        block_t cmd_block;
+        cmd_block.time = time;
+        cmd_block.count = cmds.size();
+        cmd_block.block_seq_number = seq_num;
+
+        for (auto const &cmd : cmds) {
+            if (cmd_block.block.empty()) {
+                cmd_block.block.append(cmd);
             } else {
-                pipe.cmd_pipe.append(", " + cmd);
+                cmd_block.block.append(", " + cmd);
             }
         }
 
-        return pipe;
+        return cmd_block;
     }
 };

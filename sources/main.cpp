@@ -1,10 +1,10 @@
-#include "interpreter.h"
+#include "blk.h"
 
 int main(int argc, char **argv)
 {
-    if (argc == 2) {
-        std::unique_ptr<interpreter> ipr = std::make_unique<interpreter>(std::stoi(argv[1]));
-        ipr->run();
+    if (argc > 1) {
+        auto bulk = std::make_shared<blk>(std::stoi(argv[1]));
+        bulk->exec();
     } else {
         std::cerr << "Needed at least one argument.\n";
     }
