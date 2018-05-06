@@ -1,48 +1,40 @@
-#pragma once
+#pragma  once
 
-#include <vector>
-#include <ctime>
+#include "handle.h"
 
-struct storage_t
+#include <mutex>
+#include <map>
+
+class storage
 {
-    time_t time;
-    std::vector<std::string> cmds;
-
-    bool is_empty() const {
-        return cmds.empty();
+public:
+    static storage &instance() {
+        static storage inst;
+        return inst;
     }
 
-    std::size_t commands_count() const {
-        return cmds.size();
+    void* create(std::size_t bulk) {
+        std::unique_lock<std::mutex> lk(m_mutex);
+        auto storage = std::make_shared<handle>(m_id, bulk);
+        m_handles.insert(std::make_pair(m_id, storage));
+        ++m_id;
+        return storage->get_raw_ptr();
     }
 
-    void clear() {
-        cmds.clear();
+    void destroy(unsigned int id) {
+        std::unique_lock<std::mutex> lk(m_mutex);
+        auto it = m_handles.find(id);
+        if (it != m_handles.end())
+            m_handles.erase(it);
     }
 
-    void init_time() {
-        time = std::time(nullptr);
-        cmds.clear();
-    }
+    storage(const storage&) = delete;
+    storage& operator=(const storage&) = delete;
 
-    void add(std::string const &cmd) {
-        cmds.push_back(cmd);
-    }
+private:
+    storage() = default;
 
-    block_t make_block(int seq_num) {
-        block_t cmd_block;
-        cmd_block.time = time;
-        cmd_block.count = cmds.size();
-        cmd_block.block_seq_number = seq_num;
-
-        for (auto const &cmd : cmds) {
-            if (cmd_block.block.empty()) {
-                cmd_block.block.append(cmd);
-            } else {
-                cmd_block.block.append(", " + cmd);
-            }
-        }
-
-        return cmd_block;
-    }
+    std::map<unsigned int, std::shared_ptr<handle>> m_handles;
+    unsigned int m_id = 0;
+    std::mutex m_mutex;
 };

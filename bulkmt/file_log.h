@@ -56,7 +56,7 @@ private:
     }
 
     void worker(const std::string &thread_name) {
-        while (m_is_run || !m_queue.empty()) {
+        while (m_is_run || !m_queue.empty()) { // m_queue guaranteed may be empty
             std::unique_lock<std::mutex> lk(m_cv_queue_mutex);
             m_cv_queue.wait(lk, [&]() {
                 return (!m_queue.empty() || !m_is_run);
