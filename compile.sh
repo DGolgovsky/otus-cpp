@@ -5,7 +5,7 @@ TESTS=OFF
 mkdir build
 cd build
 
-cmake -D BUILD_TESTING=${TESTS} -D ENABLE_COVERAGE:BOOL=TRUE ..
+cmake -DBUILD_TESTING=${TESTS} -DENABLE_COVERAGE:BOOL=TRUE ..
 cmake --build . -- -j2
 
 case ${TESTS} in

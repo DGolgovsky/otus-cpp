@@ -22,23 +22,23 @@ file(GLOB TARGET_SRC
         "${CMAKE_CURRENT_SOURCE_DIR}/sources/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/sources/*.h")
 add_library(${TARGET} SHARED ${TARGET_SRC})
-
 target_link_libraries(${TARGET} ${BASE})
 target_include_directories(${TARGET} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/bulkmt/")
 
 set_target_properties(${BASE} ${TARGET} PROPERTIES
         CXX_STANDARD 14
         CXX_STANDARD_REQUIRED ON)
+
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set_target_properties(${BASE} ${TARGET} PROPERTIES COMPILE_FLAGS "-stdlib=libc++ -pthread")
 endif()
+
 target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
 
 if (CMAKE_COMPILER_IS_GNUCC)
-    option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang"
-            FALSE)
+    option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
     if (ENABLE_COVERAGE)
-        target_compile_options(${TARGET} --coverage -O2)
+        add_compile_options(--coverage -O0)
     endif()
 endif()
 
@@ -58,7 +58,7 @@ install(FILES
         DESTINATION include/async)
 
 option(BUILD_TESTING "Enable build tests" TRUE)
-if(BUILD_TESTING)
+if (BUILD_TESTING)
     add_executable(async_test main.cpp)
     target_link_libraries(async_test ${TARGET} ${CMAKE_THREAD_LIBS_INIT})
 
