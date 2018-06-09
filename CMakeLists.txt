@@ -33,6 +33,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set_target_properties(${BASE} ${TARGET} PROPERTIES COMPILE_FLAGS "-stdlib=libc++ -pthread")
 endif()
 target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
+
 if (CMAKE_COMPILER_IS_GNUCC)
     option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang"
             FALSE)
@@ -56,6 +57,7 @@ install(FILES
 
         DESTINATION include/async)
 
+option(BUILD_TESTING "Enable build tests" TRUE)
 if(BUILD_TESTING)
     add_executable(async_test main.cpp)
     target_link_libraries(async_test ${TARGET} ${CMAKE_THREAD_LIBS_INIT})

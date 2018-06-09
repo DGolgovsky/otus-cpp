@@ -10,18 +10,21 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - g++-5
+            - g++-8
+
+env:
+    - PKG=async
 
 before_script:
     # Nothing to do
 
 script:
-    - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 ./compile.sh
+    - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 ./compile.sh
 
 deploy:
     - provider: script
       skip_cleanup: true
-      script: curl -T build/async-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/async/$TRAVIS_BUILD_NUMBER/async-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+      script: curl -T build/$PKG-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udgolgovsky:$BINTRAY_API_KEY "https://api.bintray.com/content/dgolgovsky/otus-cpp/$PKG/$TRAVIS_BUILD_NUMBER/$PKG-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
 after_success:
     # Sending data to codecov.io
