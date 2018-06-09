@@ -14,12 +14,24 @@ addons:
 
 env:
     - PKG=async
+    - CXX=g++-8
+    - CC=gcc-8
+    - TESTS=FALSE
+    - COVERAGE=TRUE
+
+compiler:
+    - g++
 
 before_script:
     # Nothing to do
 
 script:
-    - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 ./compile.sh
+    #- ./compile.sh
+    - cmake -DBUILD_TESTING:BOOL=$TESTS -DENABLE_COVERAGE:BOOL=$COVERAGE .
+    - cmake --build . -- -j2
+    - cpack .
+    - if: TESTS=TRUE
+        - ctest -j2
 
 deploy:
     - provider: script
