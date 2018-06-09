@@ -1,6 +1,7 @@
 # OTUS-Cpp
 OTUS C++ online [course](https://otus.ru/lessons/razrabotchik-c++/) studying repository.
 
+[![Github Releases](https://img.shields.io/github/release/DGolgovsky/otus-cpp.svg)](https://github.com/DGolgovsky/otus-cpp/releases)
 [![Build Status](https://travis-ci.org/DGolgovsky/otus-cpp.svg?branch=master)](https://travis-ci.org/DGolgovsky/otus-cpp) [![Coverage Status](https://coveralls.io/repos/github/DGolgovsky/otus-cpp/badge.svg?branch=master)](https://coveralls.io/github/DGolgovsky/otus-cpp?branch=master) [![Code Health](https://landscape.io/github/DGolgovsky/otus-cpp/master/landscape.svg?style=flat)](https://landscape.io/github/DGolgovsky/otus-cpp/master)
 
 **About the course**
