@@ -24,12 +24,11 @@ before_script:
     # Nothing to do
 
 script:
-    #- ./compile.sh
-    - CXX=g++-8 CC=gcc-8 cmake -DBUILD_TESTING:BOOL=$TESTS -DENABLE_COVERAGE:BOOL=$COVERAGE .
+    #- CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 ./compile.sh
+    - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -DBUILD_TESTING:BOOL=$TESTS -DENABLE_COVERAGE:BOOL=$COVERAGE .
     - cmake --build . -- -j2
     - cpack .
-    if: TESTS=TRUE
-        - ctest -j2
+	- test $TESTS=TRUE && ctest -j2
 
 deploy:
     - provider: script
