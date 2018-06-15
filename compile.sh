@@ -1,15 +1,20 @@
 #!/bin/sh
 
-TESTS=OFF
+TESTS=FALSE
+COVERAGE=TRUE
+
+if [[ -e build ]]; then
+    rm -r build
+fi
 
 mkdir build
 cd build
 
-cmake -DBUILD_TESTING=${TESTS} -DENABLE_COVERAGE:BOOL=TRUE ..
+cmake -DBUILD_TESTING:BOOL=${TESTS} -DENABLE_COVERAGE:BOOL=${COVERAGE} ..
 cmake --build . -- -j2
 
 case ${TESTS} in
-    ON) ctest -j2
+    TRUE) ctest -j2
 esac
 
-cpack .
+#cpack .

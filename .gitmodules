@@ -1,0 +1,7 @@
+[submodule "async"]
+	path = async
+	url = https://github.com/DGolgovsky/async_bulk.git
+
+[submodule "bulkmt"]
+	path = async/bulkmt
+	url = https://github.com/DGolgovsky/bulkmt.git
